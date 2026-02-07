@@ -38,6 +38,9 @@ public class helloworld {
     }
 
         //harus buat jatah data yang ingin ditambahkan
+    
+    // insert add beggining 
+    // param (array, new data will be added)
     static void InsertAtBeggining(int[] arr, int add){
         // show the previous array
         

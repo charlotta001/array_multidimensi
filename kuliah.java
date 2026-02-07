@@ -35,15 +35,15 @@ public class kuliah {
 
         int choice = 0;
         do{
-        System.out.print("your choice : ");
+        System.out.print("9 to exit, your choice : ");
           
             if(input.hasNextInt())
             {
             choice = input.nextInt();
+            input.nextLine();
             switch(choice)
             {
             case 1: 
-                input.nextLine();
                 String name,nim;
                 System.out.println("Input name of member: ");
                 name = input.nextLine();
@@ -51,12 +51,15 @@ public class kuliah {
                 nim = input.nextLine();
 
                 arr = InsertAtBeggining(arr,name, nim);
-                CheckArraySpec(arr);
-
+                ShowData(arr);
                 break;
             case 2:
+                arr = InsertGivenPosition(arr, input);
+                ShowData(arr);
                 break;
             case 3:
+                arr = InsertAtEnd(arr, input);
+                ShowData(arr);
                 break;
             case 4:
                 break;
@@ -67,6 +70,7 @@ public class kuliah {
             case 7:
                 break;
             case 8:
+                ShowData(arr);
                 break;
             case 9:
                 break;
@@ -100,6 +104,9 @@ public class kuliah {
     }
 
 
+
+    // insert data at beggining
+    // param (array, nama, nim)
     static String[][] InsertAtBeggining(String[][] arr, String nama, String nim)
     {
         int row = arr.length + 1;
@@ -111,19 +118,12 @@ public class kuliah {
             newArr[i+1][0] = arr[i][0];
             newArr[i+1][1] = arr[i][1];
         }
-
-
-        // for(int i =n-1 ; i >= 0 ; i--){
-        //     newArr[i + 1] = newArr[i];
-        // }
-
         newArr[0][0] = nama;
         newArr[0][1] = nim;
-
         return newArr;
     }
 
-    static void CheckArraySpec(String[][] arr)
+    static void ShowData(String[][] arr)
     {
         int coloumn = arr[0].length;
         int rowPrevious = arr.length -1;
@@ -133,10 +133,65 @@ public class kuliah {
         System.out.println("coloumn: " + coloumn);
 
         for(int i = 0; i < arr.length; i++){
-            System.out.println(arr[i][0] + "||" + arr[i][1]);
+            System.out.println(i + 1 +" : "+ arr[i][0] + "||" + arr[i][1]);
         }
     }
+
+    // insert given position
+    static String[][] InsertGivenPosition(String[][] arr, Scanner input){
+
+      //  int position = 0;
+        int lengthArr = arr.length;
+        String name,nim;
+        int position;
+        System.out.println("array length is: "+ lengthArr);
+        
+        System.out.print("choose the position: ");
+        if (input.hasNextInt()){
+        position = input.nextInt();
+        input.nextLine();
     
+
+        System.out.print("input name: ");
+        name = input.nextLine();
+
+        System.out.print("input nim: ");
+        nim = input.nextLine();
+        
+        arr[position - 1][0] = name;
+        arr[position - 1][1] = nim;
+        } else {
+            System.out.print("");
+        }
+
+        return arr;
+    }
+
+    static String[][] InsertAtEnd(String[][] arr, Scanner input){
+        int lengthArr = arr.length + 1;
+
+       
+        String[][] newArr = new String[lengthArr][2];
+
+        for(int i = 0; i < arr.length; i++){
+            newArr[i][0] = arr[i][0];
+            newArr[i][1] = arr[i][1];
+        }
+        
+        System.out.print("input name: ");
+        String name = input.nextLine();
+        System.out.print("input nim: ");
+        String nim = input.nextLine();
+
+
+        newArr[newArr.length - 1][0] = name;
+        newArr[newArr.length - 1][1] = nim;
+
+        return newArr;
+    }
+
+
+
 
 }
     
