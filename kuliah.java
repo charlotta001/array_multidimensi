@@ -55,15 +55,18 @@ public class kuliah {
                 break;
             case 2:
                 arr = InsertGivenPosition(arr, input);
-                ShowData(arr);
+                //ShowData(arr);
                 break;
             case 3:
                 arr = InsertAtEnd(arr, input);
                 ShowData(arr);
                 break;
             case 4:
+                arr = DeleteFromBeggining(arr);
                 break;
             case 5:
+                arr = DeleteGivenPosition(arr, input);
+                //ShowData(arr);
                 break;
             case 6: 
                 break;
@@ -143,15 +146,19 @@ public class kuliah {
       //  int position = 0;
         int lengthArr = arr.length;
         String name,nim;
-        int position;
+        int position = 0;
         System.out.println("array length is: "+ lengthArr);
+        
+
         
         System.out.print("choose the position: ");
         if (input.hasNextInt()){
         position = input.nextInt();
-        input.nextLine();
+        //input.nextLine();
     
-
+        if(position <= arr.length){
+        
+        input.nextLine();
         System.out.print("input name: ");
         name = input.nextLine();
 
@@ -160,10 +167,15 @@ public class kuliah {
         
         arr[position - 1][0] = name;
         arr[position - 1][1] = nim;
-        } else {
-            System.out.print("");
+        } else{
+            System.out.println("range out of the bound");
+            input.nextLine();
         }
-
+        } else {
+            System.out.println("position must be integer");
+            input.nextLine();
+        }
+    
         return arr;
     }
 
@@ -190,8 +202,57 @@ public class kuliah {
         return newArr;
     }
 
+    static String[][] DeleteFromBeggining(String[][] arr){
+
+        int n = arr.length;
+        String[][] newArr = new String[n-1][];
 
 
+        for(int i = 1; i < n; i++){
+            newArr[i -1] = arr[i];
+        }
+        
+        return newArr;
+    }
+
+    static String[][] DeleteGivenPosition(String[][] arr, Scanner input){
+
+        System.out.print("input position: ");
+
+        int n = arr.length -1;
+        String[][] newArr = new String[arr.length][2];
+
+        if(input.hasNextInt()){
+        int positionIndex = input.nextInt();
+        //input.nextLine();
+
+        if(positionIndex <= arr.length){
+            newArr = new String[n][2];
+
+            for(int i =0; i < newArr.length; i++)
+                {
+                    newArr[i][0] = arr[i][0];
+                    newArr[i][1] = arr[i][1];
+
+          
+                    if( i == (positionIndex - 1))
+                    {
+                        newArr[i][0] = arr[i+1][0];
+                        newArr[i][1] = arr[i+1][1];
+                    } 
+                }
+        } else{
+            System.out.println("range out of the bound");
+            input.nextLine();
+        }
+        } else {
+            System.out.println("only accept int");
+            input.nextLine();
+        }
+
+        
+        return newArr;
+    }
 
 }
     
