@@ -4,12 +4,7 @@ public class kuliah {
 
     // main program
     public static void main(String[] args){
-    
-        // String[][] arr= InitFixedArrays();
 
-        // arr = InsertAtBeggining(arr,"bambang", "12");
-
-        // CheckArraySpec(arr);
         Init();
     
     }
@@ -51,7 +46,7 @@ public class kuliah {
                 nim = input.nextLine();
 
                 arr = InsertAtBeggining(arr,name, nim);
-                ShowData(arr);
+                //ShowData(arr);
                 break;
             case 2:
                 arr = InsertGivenPosition(arr, input);
@@ -59,7 +54,7 @@ public class kuliah {
                 break;
             case 3:
                 arr = InsertAtEnd(arr, input);
-                ShowData(arr);
+               // ShowData(arr);
                 break;
             case 4:
                 arr = DeleteFromBeggining(arr);
@@ -69,13 +64,13 @@ public class kuliah {
                 //ShowData(arr);
                 break;
             case 6: 
+                arr = DeleteFromEnd(arr);
                 break;
             case 7:
+                arr = DeleteFirstOccurence(arr, input);
                 break;
             case 8:
                 ShowData(arr);
-                break;
-            case 9:
                 break;
             default:
                 System.out.println("input only accept 1-9 ");
@@ -86,10 +81,7 @@ public class kuliah {
             }
         } while(choice != 9);
 
-        System.out.println("thank you for using sawit program");
-
-        
-        
+    System.out.println("thank you for using sawit program");
     input.close();
     }
 
@@ -254,6 +246,68 @@ public class kuliah {
         return newArr;
     }
 
+
+
+    static String[][] DeleteFromEnd(String[][] arr){
+    
+        String[][] newArr = new String[arr.length - 1][2];
+        
+        
+        for(int i=0; i < newArr.length; i++){
+            newArr[i][0] =  arr[i][0];
+            newArr[i][1] =  arr[i][1];
+        }
+
+        return newArr;
+    }
+
+    static String[][] DeleteFirstOccurence(String[][] arr, Scanner input){
+
+
+        int positionToDelete = -1;
+        boolean found = false;
+        System.out.print("input nim will be delete: ");
+        String nim = input.nextLine();
+
+        String nimReplace = nim.replaceAll("\\s","");
+        
+
+        for(int i = 0; i < arr.length; i++){
+           
+            if(arr[i][1] == null){
+                continue;
+            }
+            
+            String replace = arr[i][1].replaceAll("\\s","");
+
+            if(replace.equalsIgnoreCase(nimReplace)) {
+                positionToDelete = i;
+                found = true;
+                break;
+            }
+        }
+            int nextArr =0;
+            String[][] newArr = new String[arr.length -1 ][2];
+
+        if(found){
+           
+            for(int i=0; i < arr.length; i ++){
+
+            if(i == positionToDelete){
+                continue;
+            }
+            
+            newArr[nextArr][0] = arr[i][0];
+            newArr[nextArr][1] = arr[i][1];
+            
+            nextArr++;
+            }
+            return newArr;
+        }
+
+        System.out.println("nim not found");
+        return arr;
+    }
 }
     
 
