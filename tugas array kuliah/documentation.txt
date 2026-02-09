@@ -1,0 +1,11 @@
+carikan dokumentasi dari replace white space dan compare 2 string yang digunakan 
+https://www.geeksforgeeks.org/java/how-to-remove-all-white-spaces-from-a-string-in-java/
+https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#equalsIgnoreCase-java.lang.String-
+
+perbaiki kode saya, saya ingin cek dari belakang, null
+sampai menemukan value paling belakang, 
+dan isi value setelah paling belakang, 
+kalau paling belakang atau index 9,
+sudah ada value maka ditanya apakah force input atau tidak
+
+perbaiki ini untuk mencocokkan nim jika nim sama maka akan di delete, sorting dari index 0 , jika nim tidak ada maka not found

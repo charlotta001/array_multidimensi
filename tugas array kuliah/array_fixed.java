@@ -38,31 +38,31 @@ public class array_fixed {
                 {
                     case 1: 
                         InsertAtBeggining(arr, input);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 2:
                         InsertGivenPosition(arr, input);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 3:
                         InsertAtEnd(arr, input);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 4:
                         DeleteFromBeggining(arr);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 5:
                         DeleteGivenPosition(arr, input);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 6: 
                         DeleteFromEnd(arr);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 7:
                         DeleteFirstOccurence(arr, input);
-                        ShowData(arr);
+                        //ShowData(arr);
                         break;
                     case 8:
                         ShowData(arr);
@@ -100,9 +100,9 @@ public class array_fixed {
     }
 
     static void InsertGivenPosition(String[][] arr, Scanner input){
-        if (count >= MAX) {
+        if (count >= MAX || count < 0 ) {
             System.out.println("=== Array is full ===");
-            //return;
+            return;
         }
 
         System.out.print("choose the position (1-10): ");
@@ -151,22 +151,44 @@ public class array_fixed {
         }
     }
 
-    static void InsertAtEnd(String[][] arr, Scanner input){
-        if (count >= MAX) {
-            System.out.println("Array is full");
-            return;
+    static void InsertAtEnd(String[][] arr, Scanner input) {
+    int maxIndex = 9;
+    int lastOccupied = -1;
+
+    for (int i = maxIndex; i >= 0; i--) {
+        if (arr[i][0] != null) {
+            lastOccupied = i;
+            break;
         }
+    }
+
+    if (lastOccupied == maxIndex) {
+        System.out.print("wanna force input: ");
+        char forced = input.next().charAt(0);
+        input.nextLine();
+
+        if (Character.toUpperCase(forced) == 'Y') {
+            System.out.print("input name: ");
+            arr[maxIndex][0] = input.nextLine();
+            System.out.print("input nim: ");
+            arr[maxIndex][1] = input.nextLine();
+        } else {
+            System.out.println("array not overwrite");
+        }
+    } else {
+        int pos = lastOccupied + 1;
 
         System.out.print("input name: ");
-        String name = input.nextLine();
+        arr[pos][0] = input.next();
         System.out.print("input nim: ");
-        String nim = input.nextLine();
+        arr[pos][1] = input.next();
+        input.nextLine();
 
-        arr[count][0] = name;
-        arr[count][1] = nim;
-
-        count++;
+        if (count < MAX) {
+            count++;
+        }
     }
+}
 
     static void DeleteFromBeggining(String[][] arr){
         if (count == 0) {
@@ -221,53 +243,60 @@ public class array_fixed {
         }
     }
 
-    static void DeleteFromEnd(String[][] arr){
-        if (count == 0) {
-            System.out.println("Array is empty");
+    static void DeleteFromEnd(String[][] arr) {
+    int maxIndex = 9;
+
+    for (int i = maxIndex; i >= 0; i--) {
+        if (arr[i][0] != null) {
+            arr[i][0] = null;
+            arr[i][1] = null;
+            
+            if (count > 0) {
+                count--;
+            }
+            
+            System.out.println("Deleted data at index " + i);
             return;
         }
-
-        arr[count - 1][0] = null;
-        arr[count - 1][1] = null;
-        count--;
     }
 
-    static void DeleteFirstOccurence(String[][] arr, Scanner input){
-        if (count == 0) {
-            System.out.println("Array is empty");
-            return;
-        }
+    System.out.println("Array is empty");
+}
 
-        System.out.print("input nim will be delete: ");
-        String nim = input.nextLine();
-        String nimReplace = nim.replaceAll("\\s","");
-        
-        int positionToDelete = -1;
-        boolean found = false;
+    static void DeleteFirstOccurence(String[][] arr, Scanner input) {
+    if (count == 0) {
+        System.out.println("Array is empty");
+        return;
+    }
 
-        for(int i = 0; i < count; i++){
-            if(arr[i][1] != null){
-                String replace = arr[i][1].replaceAll("\\s","");
-                if(replace.equalsIgnoreCase(nimReplace)) {
-                    positionToDelete = i;
-                    found = true;
-                    break;
-                }
+    System.out.print("input nim will be delete: ");
+    String nim = input.nextLine();
+    String targetNim = nim.replaceAll("\\s", "");
+
+    int index = -1;
+
+    for (int i = 0; i < 10; i++) {
+        if (arr[i][1] != null) {
+            String currentNim = arr[i][1].replaceAll("\\s", "");
+            if (currentNim.equalsIgnoreCase(targetNim)) {
+                index = i;
+                break;
             }
         }
+    }
 
-        if(found){
-            for (int i = positionToDelete; i < count - 1; i++) {
-                arr[i][0] = arr[i + 1][0];
-                arr[i][1] = arr[i + 1][1];
-            }
-            arr[count - 1][0] = null;
-            arr[count - 1][1] = null;
+    if (index != -1) {
+        arr[index][0] = null;
+        arr[index][1] = null;
+
+        if (count > 0) {
             count--;
-        } else {
-            System.out.println("nim not found");
         }
+        System.out.println("Data deleted successfully");
+    } else {
+        System.out.println("nim not found");
     }
+}
 
     static void ShowData(String[][] arr)
     {   

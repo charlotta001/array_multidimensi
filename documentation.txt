@@ -1,5 +1,0 @@
-dokumentasi dari function yang digunakan 
-
-
-https://www.geeksforgeeks.org/java/how-to-remove-all-white-spaces-from-a-string-in-java/
-https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#equalsIgnoreCase-java.lang.String-
