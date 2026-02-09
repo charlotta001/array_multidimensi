@@ -41,13 +41,10 @@ public class kuliah_array_multidimensi {
             switch(choice)
             {
             case 1: 
-                String name,nim;
-                System.out.println("Input name of member: ");
-                name = input.nextLine();
-                System.out.println("Input nim of member: ");
-                nim = input.nextLine();
+               
+               
 
-                arr = InsertAtBeggining(arr,name, nim);
+                arr = InsertAtBeggining(arr, input);
                 //ShowData(arr);
                 break;
             case 2:
@@ -104,8 +101,15 @@ public class kuliah_array_multidimensi {
 
     // insert data at beggining
     // param (array, nama, nim)
-    static String[][] InsertAtBeggining(String[][] arr, String nama, String nim)
+    static String[][] InsertAtBeggining(String[][] arr, Scanner input)
     {
+
+         System.out.println("Input name of member: ");
+        String name = input.nextLine();
+        System.out.println("Input nim of member: ");
+        String nim = input.nextLine();
+
+        
         int row = arr.length + 1;
         String[][] newArr = new String[row][2];
         //int n = newArr.length -1;
@@ -115,7 +119,7 @@ public class kuliah_array_multidimensi {
             newArr[i+1][0] = arr[i][0];
             newArr[i+1][1] = arr[i][1];
         }
-        newArr[0][0] = nama;
+        newArr[0][0] = name;
         newArr[0][1] = nim;
         return newArr;
     }
@@ -305,9 +309,11 @@ public class kuliah_array_multidimensi {
             nextArr++;
             }
             return newArr;
+        } else {
+            System.out.println("nim not found");
         }
 
-        System.out.println("nim not found");
+       // System.out.println("nim not found");
         return arr;
     }
 }
