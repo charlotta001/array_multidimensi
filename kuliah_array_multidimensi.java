@@ -1,6 +1,6 @@
 import  java.util.Scanner;
 
-public class kuliah {
+public class kuliah_array_multidimensi {
 
     // main program
     public static void main(String[] args){
@@ -36,6 +36,8 @@ public class kuliah {
             {
             choice = input.nextInt();
             input.nextLine();
+
+            
             switch(choice)
             {
             case 1: 
