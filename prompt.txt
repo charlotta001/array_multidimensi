@@ -1,0 +1,3 @@
+ rapikan kode saya ,saya ingin init dulu ada apa saja yang ada di linked list saya jika null return tidak ada data di list jika ada data maka show ada berapa data antara 1 sampai total yang ada di dalam data
+
+ https://claude.ai/chat/5e061ba9-f974-4a26-92d9-0bf4faa435a5
