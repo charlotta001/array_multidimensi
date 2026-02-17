@@ -36,3 +36,5 @@ maka dari 10 diganti ke 20 dan seterusnya ?
 
 
  kenapa tidak langsung saja pakai head
+
+ ubah kode saya menjadi py
