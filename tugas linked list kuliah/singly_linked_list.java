@@ -2,23 +2,17 @@ import java.util.Scanner;
 
 public class singly_linked_list {
 
+    //static variable (karena function pakai static)
     static int count = 0;
     static Scanner input = new Scanner(System.in);
     static Node head;
 
 
-
-
-
-    
+    // running program
     public static void main(String[] args) {
     
         Init();
     }
-
-
-
-
     // class NODE
     static class Node{
         
@@ -31,7 +25,8 @@ public class singly_linked_list {
             this.nim =  nim;
             this.next =  null;
         }
-        // explain this
+
+        // agar ketika print out object di conver ke string , bukan (Node  @12345)
         @Override
         public String toString(){
         return name  + "||" + nim;
@@ -80,11 +75,13 @@ public class singly_linked_list {
                     DeleteFromBeggining();
                     break;
                 case 5:
+                    DeleteGivenPosition();
                     break;
                 case 6:
                     DeleteFromEnd();
                     break;
                 case 7:
+                    DeleteFirstOccurence();
                     break;
                 case 8:
                     ShowData();
@@ -131,30 +128,35 @@ public class singly_linked_list {
             count++;
     }
     
-    static void ShowData(){
 
+    //show data
+    static void ShowData(){
+        int i = 1;
         Node temp = head;
         System.out.println(" ");
         System.out.println("count = "+count);
+        System.out.print("=========");
+
         while(temp != null){
-            System.out.println(temp.name + " || " + temp.nim);
+            System.out.println( i +". "+ temp.name + " || " + temp.nim);
             temp =  temp.next;
+            i++;
         }
 
-        if(head != null){
-        System.out.println("[][][][][]" + head.name);
-        }
-        System.out.println("head is: "+head);
+        // if(head != null){
+        // System.out.println("[][][][][]" + head.name);
+        // }
+        // System.out.println("head is: "+head);
     }
 
 static void InsertGivenPosition(){
     // Cek apakah linked list kosong
     if(head == null){
-        System.out.println("Tidak ada data di list");
+        System.out.println("Data is empty");
         return;
     }
     
-    // Hitung total node yang ada
+    // total data di linked list
     Node curr = head;
     int total = 0;
     while(curr != null){
@@ -163,40 +165,41 @@ static void InsertGivenPosition(){
     }
     
     // Tampilkan informasi jumlah data
-    System.out.println("Jumlah data saat ini: " + total);
-    System.out.println("Anda dapat menambahkan data dari posisi 1 - " + (total + 1));
+    System.out.println("Amount data currently: " + total);
+    System.out.println("Data from 1- " + (total + 1));
     
     // Input posisi
     int pos = 0;
     System.out.print("Input posisi: ");
     
+
+    // cek input harus int
     if(input.hasNextInt()){
         pos = input.nextInt();
         input.nextLine();
     } else {
         input.nextLine();
-        System.out.println("Input hanya menerima angka");
+        System.out.println("Input only accept number");
         return;
     }
     
     // Validasi posisi
     if(pos < 1 || pos > total + 1){
-        System.out.println("Posisi tidak valid! Masukkan posisi antara 1 - " + (total + 1));
+        System.out.println("Position just accept  1 - " + (total + 1));
         return;
     }
     
     // Input data
-
     int nim;
     String name;
     System.out.print("Input nama: ");
     name = input.nextLine();
-    System.out.print("Input NIM: ");
+    System.out.print("Input nim: ");
     if(input.hasNextInt()){
     nim = input.nextInt();
     input.nextLine();
     } else {
-        System.out.println("input hanya bisa angka");
+        System.out.println("input only accept number");
         return;
     }
     // Insert di posisi 1 (awal)
@@ -204,7 +207,7 @@ static void InsertGivenPosition(){
         Node newNode = new Node(name, nim);
         newNode.next = head;
         head = newNode;
-        System.out.println("Data berhasil ditambahkan di posisi 1");
+        System.out.println("Data is complete added to 1");
         return;
     }
     
@@ -219,9 +222,10 @@ static void InsertGivenPosition(){
     curr.next = newNode;
     count++;
     
-    System.out.println("Data berhasil ditambahkan di posisi " + pos);
+    System.out.println("Data is complete added at " + pos);
 }
 
+    //Insert at end
 static void InsertAtEnd(){
 
     if(head == null){
@@ -253,6 +257,7 @@ static void InsertAtEnd(){
     count++;
 
 }
+    // Delete from Beggining
     static void DeleteFromBeggining(){
 
         
@@ -268,7 +273,7 @@ static void InsertAtEnd(){
     }
 
 
-    // review ulang
+    // Delete From end
     static void DeleteFromEnd(){
         Node curr = head;
 
@@ -289,4 +294,79 @@ static void InsertAtEnd(){
         curr.next = null;
         count--;
     }
+
+    // Delete Given Position
+    static void DeleteGivenPosition(){
+        
+        int pos = 0;
+
+        System.out.print("input pos: ");
+        pos = input.nextInt();
+
+        if(pos < 1 || pos > count){
+            System.out.println("pos kurang dari 1 dan lebih dari count");
+            return;
+        }
+
+        if(pos == 1){
+            DeleteFromBeggining();
+            return;
+        }
+
+        if(pos == count){
+            DeleteFromEnd();
+            return;
+        }
+        Node curr = head;
+        for(int i = 0; i < pos - 2; i++){
+            curr = curr.next;
+        }
+        curr.next = curr.next.next;
+        count--;
+    }
+
+    // Delete First Occurence
+    static void DeleteFirstOccurence() {
+    int nim = 0;
+    int index = -1;
+
+    
+    Node prev = null;
+    Node curr = head;
+
+    System.out.print("Input nim: ");
+
+
+    // finding nim inputed
+    if (input.hasNextInt()) {
+        nim = input.nextInt();
+        input.nextLine();
+
+        for (int i = 0; i < count; i++) {
+            if (curr.nim == nim) {
+                index = i;
+                break;
+            }
+            prev = curr;       
+            curr = curr.next;  
+        }
+
+    } else {
+        System.out.println("Nim only accepts int");
+        input.nextLine();
+        return;
+    }
+
+    // handle hasil dari index
+    if (index == -1) {
+        System.out.println("Nim not found");
+    } else if (index == 0) {
+        DeleteFromBeggining();
+    } else if (index == count - 1) {
+        DeleteFromEnd();
+    } else {
+        prev.next = curr.next; 
+        count--;
+    }
+}
 }

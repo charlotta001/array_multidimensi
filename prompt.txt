@@ -1,3 +1,38 @@
- rapikan kode saya ,saya ingin init dulu ada apa saja yang ada di linked list saya jika null return tidak ada data di list jika ada data maka show ada berapa data antara 1 sampai total yang ada di dalam data
+ rapikan kode saya ,saya ingin init dulu ada apa saja yang ada di linked list saya jika null 
+ return tidak ada data di list jika ada data maka show ada berapa data
+  antara 1 sampai total yang ada di dalam data
 
- https://claude.ai/chat/5e061ba9-f974-4a26-92d9-0bf4faa435a5
+bagaimana cara convert reff memory obj di java menjadi string agar readable
+
+
+ ini adalah ide saya untuk delete given position, tapi  apakah ide saya ini bagus untuk delete given position, 
+ memindahkan obj setelah obj yang akan di didelete sehingga obj di delete ini ditimpa oleh obj setelahnya(bukan obj tapi refference)
+
+
+
+ tapi di geeksforgeeks seperti ini, coba bandingkan dengan punya saya,
+ menurutmu lebih bagus mana dan efisien mana ?
+ kenapa head bisa selalu menjadi reff pertama dan prev bisa selalu jadi yang sebelum next ?
+ oh sama saja ya punya saya dengan geeks for geeks karena cuma beda di prev dan next, tapi logicnya
+ sama pada bagian cut reff .next lalu diganti dengan setelahnya
+
+
+
+
+jadi ketika last.next tidak null maka akan last = last.next, last adalh head, maka seperti head = head.next ,
+ lalu head.next = head.next.next
+
+
+
+ jadi node ini saling terhubung, tidak perlu saya timpa misal head = last.next , karena last.next itu sendiri 
+ sudah dikasih oleh newNode di index paling akhir.
+ yang saya masih bingung itu kenapa last = head, itu dapat mengubah head 
+ tanpa kita perlu definisi head = last.next
+
+
+jadi last = last.next itu mengacu pada alamt, misal alamt last = 10 dan alamat last.next = 20, 
+maka dari 10 diganti ke 20 dan seterusnya ?
+
+
+
+ kenapa tidak langsung saja pakai head
