@@ -135,7 +135,7 @@ public class singly_linked_list {
         Node temp = head;
         System.out.println(" ");
         System.out.println("count = "+count);
-        System.out.print("=========");
+        System.out.println("=========");
 
         while(temp != null){
             System.out.println( i +". "+ temp.name + " || " + temp.nim);
