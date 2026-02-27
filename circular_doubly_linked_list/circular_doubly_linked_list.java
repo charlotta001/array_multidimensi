@@ -59,10 +59,11 @@ public class circular_doubly_linked_list {
                     InsertAtEnd();
                     break;
                 case 2:
+                    DeleteGivenPosition();
                     break;
                 case 3:
                     try{
-                    ShowDataForward();
+                        ShowDataForward();
                     } catch(InterruptedException e){
                         System.out.print(e);
                     }
@@ -131,7 +132,6 @@ public class circular_doubly_linked_list {
                 Thread.sleep(3000);
         }
     }
-
     static void ShowDataForward()throws InterruptedException{
     
         Node temp = head;
@@ -143,7 +143,6 @@ public class circular_doubly_linked_list {
             }
         }
     }
-
     static void ShowDataBasedInOrder(){
         System.out.println("Amount data currently:"+ count);
 
@@ -171,8 +170,50 @@ public class circular_doubly_linked_list {
 
         System.out.println("Berita in order -" + order + " : " + temp.berita);
 
-
-   
-
     }
+
+    static void DeleteGivenPosition(){
+        Node temp = head;
+        int pos = 0;
+
+
+        if(head == null){
+            System.out.println("this linked list empty");
+            return;
+        }
+
+        System.out.println("position can be deleted 1 -"+ count);
+        System.out.print("input position: ");
+
+        if(input.hasNextInt() ){
+            pos = input.nextInt();
+            input.nextLine();
+
+        if(pos < 1 || pos > count){
+            System.out.println("pos more or less of list");
+            return;
+        }
+
+        if(head.next == head){
+            head = null;
+        } else if(pos == 1){
+            tail.next = head.next;
+            head.next.prev = tail;
+            head = head.next;
+        } else{
+            for(int i = 1; i < pos; i++){
+                temp = temp.next;
+            }
+            if(temp == tail){
+                tail = temp.prev;
+            }
+            temp.prev.next = temp.next;
+            temp.next.prev = temp.prev;
+        }
+     
+        count--;
+    } else {
+        System.out.println("pos just accept a number");
+    }
+}
 }
