@@ -1,4 +1,11 @@
 import java.util.Scanner;
+// documentation 
+// thread               : https://docs.oracle.com/javase/tutorial/essential/concurrency/runthread.html
+// thread is used       : https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html
+// thread constructor   : https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#Thread-java.lang.Runnable-
+// interface runnable   : https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html
+// compare string       : https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+
 
 
 // ===============================================================================================================================
@@ -91,6 +98,7 @@ public class circular_doubly_linked_list {
         }
         
     }while(choice != 6);
+    input.close();
 }
 
     static void InsertAtEnd(){
@@ -123,25 +131,134 @@ public class circular_doubly_linked_list {
         count++;
     }
 
+
+
+
+
+
+
     static void ShowDataBackward()throws InterruptedException{
+      
+        if(head  == null){
+            System.out.println("Linked list is empty");
+            return;
+        }
+    
+        int choice = 0;
+        int pos = count;
         Node temp = tail;
-        if(head != null)
-            for(int i = count ; i > 0; i--){
+        System.out.println("1.) ShowDataBackward using for loop");
+        System.out.println("2.) ShowDataBackward using while");
+        System.out.print("input here : ");
+
+        if(input.hasNextInt()){
+        choice = input.nextInt();
+        input.nextLine();
+        switch(choice){
+            case 1:
+            if(head != null){
+              for(int i = count ; i > 0; i--){
                 System.out.println(i + ".) "+ temp.berita);
                 temp = temp.prev;
                 Thread.sleep(3000);
-        }
+            }  
+        } break;
+          case 2:
+            // array in java called obj, and obj shared memory with thread instead using "boolean"
+            boolean running[] = {false};
+            // () -> {} is lambda expression in java (ex java 8)
+            Thread newThread = new Thread(()-> {
+                String stopLoop = input.nextLine();
+                // flag stop
+                if(stopLoop.equalsIgnoreCase("c")) {
+                    running[0] = true;
+                    return;
+                }
+            });
+          
+            // start Thread
+            newThread.start();
+
+            while(temp != null && !running[0]){
+                System.out.println(pos + ".) " + temp.berita);
+                temp =  temp.prev;
+                Thread.sleep(3000);
+                pos--;
+                if(pos < 1){
+                    pos = count;
+                }
+            }break;
+            default:
+                System.out.println("input just accept 1-2");
+                break;
+        
+    } 
+        pos = count;
+    }else{
+        System.out.println("choice just accept number ");
     }
+    }
+
+    //when thread.sleep()active, this program will sleep and doing nothing
+    //thread 
+    //flag variable = on/off
     static void ShowDataForward()throws InterruptedException{
     
+        if(head  == null){
+            System.out.println("Linked list is empty");
+            return;
+        }
+    
+        int choice = 0;
+        int pos = 1;
         Node temp = head;
-        if(head != null){
-            for(int i =1; i < count + 1; i++){
+        System.out.println("1.) ShowDataForward using for loop");
+        System.out.println("2.) ShowDataForward using while");
+        System.out.print("input here : ");
+
+        if(input.hasNextInt()){
+        choice = input.nextInt();
+        input.nextLine();
+        switch(choice){
+            case 1:
+            if(head != null){
+                for(int i =1; i < count + 1; i++){
                 System.out.println(i + ".) " + temp.berita);
                 temp =  temp.next;
                 Thread.sleep(3000);
             }
-        }
+        } break;
+          case 2:
+            // array in java called obj, and obj shared memory with thread instead using "boolean"
+            boolean running[] = {false};
+            // () -> {} is lambda expression in java (ex java 8)
+            Thread newThread = new Thread(()-> {
+                String stopLoop = input.nextLine();
+                // flag stop
+                if(stopLoop.equalsIgnoreCase("c")) {
+                    running[0] = true;
+                    return;
+                }
+            });
+          
+            // start Thread
+            newThread.start();
+
+            while(temp != null && !running[0]){
+                System.out.println(pos + ".) " + temp.berita);
+                temp =  temp.next;
+                Thread.sleep(3000);
+                pos++;
+                if(pos > count){
+                    pos = 1;
+                }
+            }break;
+        
+    } 
+        pos = 1;
+    }else{
+        System.out.println("choice just accept number ");
+    }
     }
     static void ShowDataBasedInOrder(){
         System.out.println("Amount data currently:"+ count);
