@@ -41,9 +41,7 @@ public class kuliah_array_multidimensi {
             switch(choice)
             {
             case 1: 
-               
-               
-
+    
                 arr = InsertAtBeggining(arr, input);
                 //ShowData(arr);
                 break;

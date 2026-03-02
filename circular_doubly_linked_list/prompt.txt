@@ -1,0 +1,22 @@
+prompt      : how to make thread in java do u have any clue?
+ai answer   : Yes! There are two main ways to create a thread in Java.
+            Way 1 — Extend the Thread class
+            You create a class that extends Thread, then override the run() method. Whatever you put inside run() is what that worker will do.
+            Then you create an object of that class and call .start() to begin the worker.
+            Way 2 — Use Runnable (more common)
+            You create a Runnable — think of it as a task description — and pass it to a Thread object. Then call .start().
+            This is more flexible and more commonly used in real projects.
+            The key methods you need to know:
+            .start() → tells the thread to begin working
+            .run() → the actual task the thread does (you define this)
+            .setDaemon(true) → makes the thread automatically die when your main program ends, so it doesn't keep running in the background forever
+            Thread.sleep(ms) → pauses the current thread for X millisecond
+            Official Documentation to Read:
+            How to create a Thread
+            Runnable interface
+            Thread class full docs
+            Once you understand how to make a thread, the next step is putting your Scanner input listener inside the thread's run() method. Want me to walk you through that next?
+
+link         :https://claude.ai/chat/db6faa48-873f-4309-a1a9-a23bbf7b705a
+prompt       :so this is my program please convert to python, im so lazy to rewrite in python
+ai answer    : all of python code
