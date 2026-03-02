@@ -20,3 +20,6 @@ ai answer   : Yes! There are two main ways to create a thread in Java.
 link         :https://claude.ai/chat/db6faa48-873f-4309-a1a9-a23bbf7b705a
 prompt       :so this is my program please convert to python, im so lazy to rewrite in python
 ai answer    : all of python code
+
+
+generative ai : claude.ai
