@@ -130,13 +130,6 @@ public class circular_doubly_linked_list {
         }
         count++;
     }
-
-
-
-
-
-
-
     static void ShowDataBackward()throws InterruptedException{
       
         if(head  == null){
@@ -260,11 +253,11 @@ public class circular_doubly_linked_list {
         System.out.println("choice just accept number ");
     }
     }
+
+    
     static void ShowDataBasedInOrder(){
         System.out.println("Amount data currently:"+ count);
 
- 
-      
         if(head == null){
             System.out.println("data is empty");
             return;

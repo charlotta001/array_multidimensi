@@ -229,8 +229,6 @@ public class kuliah_array_multidimensi {
                 {
                     newArr[i][0] = arr[i][0];
                     newArr[i][1] = arr[i][1];
-
-          
                     if( i == (positionIndex - 1))
                     {
                         newArr[i][0] = arr[i+1][0];
