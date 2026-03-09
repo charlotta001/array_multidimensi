@@ -11,6 +11,12 @@ void infixToPostfix(std::string inputUser){
     std::string token;
     std::vector <std::string> postfix;
     
+
+    // read stringstream as string (string is sentence untill whitespace)
+    // if token == "(" push to stack
+    // if token == ")" push operator from stack untill find "(" and pop "("
+    // if token == operator -> push to stack
+    // else -> push token to postfix
     while(ss >> token){
         if(token  == "("){
             push(token);
@@ -26,10 +32,13 @@ void infixToPostfix(std::string inputUser){
             postfix.push_back(token);
         }
     }
-    
+
+    // operator left -> postfix
     while(!st.empty()){
         postfix.push_back(pop());
     }
+
+    // note : fail in precedence of operator
 
 
     //   while(ss >> token){
