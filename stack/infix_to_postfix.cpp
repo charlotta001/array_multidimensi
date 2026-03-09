@@ -73,6 +73,11 @@ std::vector<std::string> infixToPostfix(const std::string input){
                 postfix.push_back(b);
                 op.pop();
         }
+        // + 
+        // +
+        //
+        //
+        //
         op.push(token);
         } else { 
             postfix.push_back(token);
