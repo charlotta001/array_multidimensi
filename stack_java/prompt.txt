@@ -1,3 +1,5 @@
+tool ai: claude ai
+
 input : kenapa postfix diulang per index, tidak hanya show 1234 misalnya tapi 1234 4 kali dan operator : operator : *-> 3.0*4.0= 12.0 darimana, help me, jangan show code tapi berikan hint bagian mana
 output : 
 Ada dua bug di showPostfix:
@@ -30,3 +32,5 @@ output : Kalau token adalah angka → push ke stack
 Kalau token adalah operator → pop dua angka, hitung, push hasilnya
 Perhatikan urutan pop: yang pertama di-pop adalah operand kanan, yang kedua adalah operand kiri
 Hasil akhir ada di top of stack
+
+link : https://claude.ai/share/25b69734-9917-47de-81cd-d832e36abff7
