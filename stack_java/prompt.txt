@@ -1,0 +1,5 @@
+kenapa postfix diulang per index, tidak hanya show 1234 misalnya tapi 1234 4 kali dan operator : operator : *-> 3.0*4.0= 12.0 darimana, help me, jangan show code tapi berikan hint bagian mana
+
+Ada dua bug di showPostfix:
+Bug 1: Di dalam for-each loop, kamu print pf (seluruh vector) bukan val (elemen saat ini) — jadi setiap iterasi dia print seluruh isi vector.
+Bug 2: countOperator di InfixToPostfix — kamu passing index sebagai pertama dan kedua, padahal parameter fungsi itu menerima float nilai operand. Jadi perhitungan yang muncul itu salah karena yang dihitung adalah nilai index-nya, bukan angka yang
