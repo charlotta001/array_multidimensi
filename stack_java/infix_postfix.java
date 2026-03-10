@@ -43,6 +43,7 @@ public class infix_postfix {
                 String user = AritmeticUser();
                 String[] stringStream = SeparateString(user);
                 Vector<String> test = InfixToPostfix(stringStream);
+                showVectorString(test);
                 //float hasil = EvaluatePostfix(test);
 
                 //System.out.println(hasil);
@@ -209,6 +210,7 @@ public class infix_postfix {
 
     // Show vector string
     static void showVectorString(Vector <String> user){
+        System.out.print("postfix: ");
         for(String val: user){
             System.out.print(val);
         }

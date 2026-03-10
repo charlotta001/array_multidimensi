@@ -1,5 +1,32 @@
-kenapa postfix diulang per index, tidak hanya show 1234 misalnya tapi 1234 4 kali dan operator : operator : *-> 3.0*4.0= 12.0 darimana, help me, jangan show code tapi berikan hint bagian mana
-
+input : kenapa postfix diulang per index, tidak hanya show 1234 misalnya tapi 1234 4 kali dan operator : operator : *-> 3.0*4.0= 12.0 darimana, help me, jangan show code tapi berikan hint bagian mana
+output : 
 Ada dua bug di showPostfix:
 Bug 1: Di dalam for-each loop, kamu print pf (seluruh vector) bukan val (elemen saat ini) — jadi setiap iterasi dia print seluruh isi vector.
 Bug 2: countOperator di InfixToPostfix — kamu passing index sebagai pertama dan kedua, padahal parameter fungsi itu menerima float nilai operand. Jadi perhitungan yang muncul itu salah karena yang dihitung adalah nilai index-nya, bukan angka yang
+
+
+input : ini kode saya java, tolong ubah jadi python, logicnya jangan diubah ya, hanya syntax
+output : kode python
+
+input : karena vector posfix sya dari depan dan saya ingin ketika saya push ke stack yaitu angka, maka harus hapus vector dari depan kan, itu bagaimana
+output : Kamu tidak perlu hapus dari vector — cukup iterasi saja pakai for loop dari index 0 sampai akhir, tidak perlu dihapus.
+Analoginya seperti kamu baca array di C++ dari kiri ke kanan — kamu tidak hapus elemennya, cukup akses satu per satu pakai index.
+
+input : cara akses index vector di java, misal index pakai for loop
+output : // pakai index
+        for(int i = 0; i < vec.size(); i++){
+         vec.get(i);  // equivalent get() = [] di C++
+            }
+
+            // atau for-each
+            for(String val : vec){
+    System.out.println(val);
+        }   
+
+
+
+input : step by step perhitungan (berdasarkan proses push-pop stack), logika dari ini jika saya code itu bagaimana ? jangna berikan kode hanya hint hint saja, apakah saya gabung ke infixc to post fix atau buat function baru ? atau bagaimanaa
+output : Kalau token adalah angka → push ke stack
+Kalau token adalah operator → pop dua angka, hitung, push hasilnya
+Perhatikan urutan pop: yang pertama di-pop adalah operand kanan, yang kedua adalah operand kiri
+Hasil akhir ada di top of stack
