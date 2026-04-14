@@ -12,6 +12,12 @@
 
 
 int main(){ 
+    int a =10;
+    int y = a += 10;
+    std::cout << "a: " << a << "y: " << y << "\n";
+    std::cout << "a: " << a;
+
+}
 
 
 
@@ -111,4 +117,4 @@ int main(){
 
 
 //     file.close();
- } 
+ 

@@ -174,6 +174,7 @@ public class infix_postfix {
             st.push(ss[i]);
             showStack(st);
         } else {
+           // for(int k = 0; k)
             // push operand to postfix dan push operand to st_nilai
             postfix.add(ss[i]);
             st_nilai.push(Float.parseFloat(ss[i]));
