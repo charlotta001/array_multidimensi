@@ -1,0 +1,1 @@
+tool gemini : https://gemini.google.com/share/397697d393e1
