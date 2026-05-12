@@ -208,6 +208,7 @@ static void InsertGivenPosition(){
         newNode.next = head;
         head = newNode;
         System.out.println("Data is complete added to 1");
+        count++;
         return;
     }
     

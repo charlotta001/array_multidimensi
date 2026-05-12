@@ -376,7 +376,6 @@ static int precedence(String op){
                     case "-":
                         {
                             result = pertama - kedua;
-                        
                             st_op.push(result);
                             break;
                         }

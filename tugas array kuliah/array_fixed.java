@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+
+// make scanner in public member class, no need to pass scanner each function
+
+
+
+
 public class array_fixed {
 
     static int count = 0;
@@ -82,6 +88,7 @@ public class array_fixed {
         input.close();
     }
 
+    // insert at beggining
     static void InsertAtBeggining(String[][] arr, Scanner input)
     {
         for (int i = MAX - 1; i > 0; i--) {
@@ -99,6 +106,7 @@ public class array_fixed {
         }
     }
 
+    // insert given position
     static void InsertGivenPosition(String[][] arr, Scanner input){
         if (count >= MAX || count < 0 ) {
             System.out.println("=== Array is full ===");
@@ -110,6 +118,7 @@ public class array_fixed {
             int position = input.nextInt();
             input.nextLine();
 
+            
             if(position >= 1 && position <= MAX){
                 int index = position - 1;
 
@@ -196,11 +205,13 @@ public class array_fixed {
             return;
         }
 
+        // insert data
         for (int i = 0; i < count - 1; i++) {
             arr[i][0] = arr[i + 1][0];
             arr[i][1] = arr[i + 1][1];
         }
 
+        //delete last data
         arr[count - 1][0] = null;
         arr[count - 1][1] = null;
         count--;
@@ -211,7 +222,6 @@ public class array_fixed {
             System.out.println("Array is empty");
             return;
         }
-
         System.out.print("input position: ");
         if(input.hasNextInt()){
             int position = input.nextInt();
@@ -263,6 +273,7 @@ public class array_fixed {
     System.out.println("Array is empty");
 }
 
+    // delete first occurence
     static void DeleteFirstOccurence(String[][] arr, Scanner input) {
     if (count == 0) {
         System.out.println("Array is empty");

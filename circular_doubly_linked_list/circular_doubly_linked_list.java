@@ -237,6 +237,7 @@ public class circular_doubly_linked_list {
             // start Thread
             newThread.start();
 
+            //if bool true -> stop thread
             while(temp != null && !running[0]){
                 System.out.println(pos + ".) " + temp.berita);
                 temp =  temp.next;
