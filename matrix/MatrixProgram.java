@@ -62,7 +62,9 @@ public class MatrixProgram {
                     break;
                 case 5:
                     System.out.println("\n=== TRANSPOSE MATRIX ===");
-                    transpose(matrix, rows, cols);
+                    matrix = transpose(matrix);
+                    rows = matrix.length;
+                    cols = matrix[0].length;
                     break;
                 case 6:
                     System.out.println("Terima kasih! Program selesai.");
@@ -102,10 +104,11 @@ public class MatrixProgram {
         System.out.println("  b. Column-wise");
         System.out.print("Pilihan: ");
         String sub = input.next();
+        // matrix langsung dioper (bukan copy) supaya hasil sort tersimpan permanen
         if (sub.equalsIgnoreCase("a")) {
-            sortRowWise(copyMatrix(matrix));
+            sortRowWise(matrix);
         } else if (sub.equalsIgnoreCase("b")) {
-            sortColumnWise(copyMatrix(matrix));
+            sortColumnWise(matrix);
         } else {
             System.out.println("Sub-pilihan tidak valid!");
         }
@@ -120,11 +123,26 @@ public class MatrixProgram {
         System.out.print("Pilihan: ");
         String sub = input.next();
         switch (sub.toLowerCase()) {
-            case "a": rotateClockwiseBy1(copyMatrix(matrix));        break;
-            case "b": rotateCounterClockwiseBy1(copyMatrix(matrix)); break;
-            case "c": rotate90(copyMatrix(matrix));                   break;
-            case "d": rotate180(copyMatrix(matrix));                  break;
-            default:  System.out.println("Sub-pilihan tidak valid!"); break;
+            case "a":
+                // ukuran tetap sama, cukup mutasi langsung pada matrix
+                rotateClockwiseBy1(matrix);
+                break;
+            case "b":
+                rotateCounterClockwiseBy1(matrix);
+                break;
+            case "c":
+                // ukuran bisa berubah (jika matrix bukan persegi), jadi hasilnya
+                // ditampung lalu dipasang kembali sebagai matrix utama
+                matrix = rotate90(matrix);
+                rows = matrix.length;
+                cols = matrix[0].length;
+                break;
+            case "d":
+                matrix = rotate180(matrix);
+                break;
+            default:
+                System.out.println("Sub-pilihan tidak valid!");
+                break;
         }
     }
 
@@ -144,15 +162,6 @@ public class MatrixProgram {
     }
 
     // ===================== HELPER =====================
-
-    static int[][] copyMatrix(int[][] src) {
-        int r = src.length, c = src[0].length;
-        int[][] copy = new int[r][c];
-        for (int i = 0; i < r; i++)
-            for (int j = 0; j < c; j++)
-                copy[i][j] = src[i][j];
-        return copy;
-    }
 
     static void cetakMatrix(int[][] m) {
         int r = m.length, c = m[0].length;
@@ -226,7 +235,9 @@ public class MatrixProgram {
     }
 
     // ===================== 2-c. ROTATE 90 DERAJAT =====================
-    static void rotate90(int[][] m) {
+    // Mengembalikan matrix hasil rotasi supaya bisa dipasang kembali
+    // sebagai data utama (ukuran bisa berubah jika baris != kolom)
+    static int[][] rotate90(int[][] m) {
         System.out.println("\n=== ROTATE 90 DERAJAT (CLOCKWISE) ===");
         System.out.println("Sebelum (" + m.length + "x" + m[0].length + "):"); cetakMatrix(m);
         int r = m.length, c = m[0].length;
@@ -235,10 +246,11 @@ public class MatrixProgram {
             for (int j = 0; j < c; j++)
                 hasil[j][r-1-i] = m[i][j];
         System.out.println("Setelah (" + c + "x" + r + "):"); cetakMatrix(hasil);
+        return hasil;
     }
 
     // ===================== 2-d. ROTATE 180 DERAJAT =====================
-    static void rotate180(int[][] m) {
+    static int[][] rotate180(int[][] m) {
         System.out.println("\n=== ROTATE 180 DERAJAT ===");
         System.out.println("Sebelum:"); cetakMatrix(m);
         int r = m.length, c = m[0].length;
@@ -247,6 +259,7 @@ public class MatrixProgram {
             for (int j = 0; j < c; j++)
                 hasil[r-1-i][c-1-j] = m[i][j];
         System.out.println("Setelah:"); cetakMatrix(hasil);
+        return hasil;
     }
 
     // ===================== 3-a. TRAVERSAL ROW-WISE =====================
@@ -292,12 +305,15 @@ public class MatrixProgram {
     }
 
     // ===================== 5. TRANSPOSE =====================
-    static void transpose(int[][] m, int r, int c) {
+    // Mengembalikan hasil transpose supaya dipasang sebagai data utama
+    static int[][] transpose(int[][] m) {
+        int r = m.length, c = m[0].length;
         System.out.println("Sebelum (" + r + "x" + c + "):"); cetakMatrix(m);
         int[][] hasil = new int[c][r];
         for (int i = 0; i < r; i++)
             for (int j = 0; j < c; j++)
                 hasil[j][i] = m[i][j];
         System.out.println("Setelah transpose (" + c + "x" + r + "):"); cetakMatrix(hasil);
+        return hasil;
     }
 }
